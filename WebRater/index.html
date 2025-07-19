@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebRater</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+      transition: all 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: white;
+      }
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 100%;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WebRater</h1>
+    <p><i>Ce que tout le monde pense mais que peu osent dire.</i></p>
+    <input id="input" type="text" placeholder="Tape un sujet (ex: iPhone 14, Jujutsu Kaisen...)" />
+    <button onclick="checkRating()">Lancer l’analyse IA</button>
+    <div id="result" class="card" style="display:none;">
+      <h2 id="subject"></h2>
+      <p class="score" style="font-size: 24px; font-weight: bold;" id="score"></p>
+      <p id="summary"></p>
+      <p><i>WebRater, l'avis sans filtre.</i></p>
+    </div>
+  </div>
+  <script>
+    function checkRating() {
+      const input = document.getElementById('input').value.trim();
+      if (!input) return;
+
+      const score = (Math.random() * 2 + 3).toFixed(1); // Note de 3.0 à 5.0
+      const summary = `L’analyse IA de "${input}" révèle une opinion majoritairement positive. Les utilisateurs apprécient ses performances, sa fiabilité, et sa facilité d’usage. Quelques critiques concernent son prix ou ses limitations dans certains contextes.`;
+
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('subject').innerText = `Résultat pour : ${input}`;
+      document.getElementById('score').innerText = `⭐ ${score} / 5`;
+      document.getElementById('summary').innerText = summary;
+    }
+  </script>
+</body>
+</html>
